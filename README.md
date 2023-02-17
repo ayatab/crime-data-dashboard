@@ -17,4 +17,5 @@ To prevent false interpretations, we could include a disclaimer or note on our w
 
 Our primary data source for crime statistics comes from the city of Seattle at: https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5. 
 
-We will be potentially using the shapefiles of each neighborhood, listed in: https://catalog.data.gov/dataset/micro-community-policing-plans-1a52e/resource/cb04d751-54e8-40a8-bfc1-98ab29200672
+We will be potentially using the shapefiles of each neighborhood, listed in: https://catalog.data.gov/dataset/micro-community-policing-plans-1a52e/resource/cb04d751-54e8-40a8-bfc1-98ab29200672 or at:
+https://data-seattlecitygis.opendata.arcgis.com/datasets/city-clerk-neighborhoods/explore?location=47.614536%2C-122.336950%2C12.87
