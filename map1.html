@@ -64,6 +64,10 @@
             color: black
         }
 
+        h1 {
+            margin-top: 0;
+        }
+
         #title {
             position: absolute;
             top: 0;
@@ -72,7 +76,8 @@
             margin-left: 20px;
             font-family: 'Open Sans', sans-serif;
             font-size: 25pt;
-            color: white
+            color: white;
+            
         }
 
         #subtitle {
@@ -119,6 +124,8 @@
             width: 240px;
             background-color: white;
             padding: 20px 20px;
+            border-radius: 10px;
+
         }
 
         .session {
@@ -160,12 +167,12 @@
         <div id="console">
             <h1>Crimes by Year</h1>
             <p>
-                Data:
+                <strong>Data:</strong>
                 <a href="https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5">Seattle Crimes Since 2008, filtered for 2018-2022</a>
-                in NYC, Jan 2016
+                collected by SPD in Seattle, 2008-Live
             </p>
             <div class='session'>
-                <h2>Day of the week</h2>
+                <h3>Filter by year:</h3>
                 <div class='row' id='filters'>
                     <input id='all' type='radio' name='toggle' value='all' checked='checked'>
                     <label for='all'>All</label>
@@ -216,13 +223,16 @@
                 'type': 'circle',
                 'source': {
                     type: 'geojson',
-                    data: 'crime_data.geojson'
+                    data: 'assets/crime_data.geojson'
                 },
                 'paint': {
                     'circle-color': '#FFFFFF'
                 },
                 'filter': ['all', filterYear]
             });
+
+            var nav = new mapboxgl.NavigationControl();
+            map.addControl(nav, 'top-right');
 
 
             document.getElementById('filters').addEventListener('change', (event) => {
