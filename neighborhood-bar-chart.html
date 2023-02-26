@@ -19,7 +19,7 @@
     <button onclick="update('2021')">2021</button>
     <button onclick="update('2022')">2022</button>
 
-    <div id="div_template"></div>
+    <div id="bar-chart"></div>
     <script>
       // set the dimensions and margins of the graph
       var margin = {top: 30, right: 30, bottom: 150, left: 90},
@@ -27,7 +27,7 @@
           height = 450 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
-      var svg = d3.select("#div_template")
+      var svg = d3.select("#bar-chart")
         .append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
@@ -82,7 +82,7 @@
             .call(d3.axisLeft(y));
 
           // create a tooltip
-          var Tooltip = d3.select("#div_template")
+          var Tooltip = d3.select("#bar-chart")
             .append("div")
             .style("opacity", 0)
             .attr("class", "tooltip")

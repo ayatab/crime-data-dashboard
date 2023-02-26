@@ -7,35 +7,51 @@
     <script src="//d3js.org/d3.v5.min.js"></script>
 
     <style>
+      #nav-bar {
+        background-color: grey;
+        width: 100%;
+      }
+
       #map {
         position: absolute;
-        height: 700px;
+        height: 100%;
         width: 100%;
         overflow: scroll;
         visibility: visible;
       }
 
       #statistics {
-        position: absolute;
         visibility: hidden;
-        height: 400px;
-        width: 800px;
+        height: 500px;
+        width: 1210px;
         overflow: scroll;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+
+      #container {
+        width: 175px;
+        margin: 0 auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
       }
 
     </style>
   </head>
   <body>
     <div id="nav-bar">
-      <button onclick="update('map')">Map</button>
-      <button onclick="update('statistics')">Statistics</button>
-      <button onclick="update('about')">About</button>
+      <div id="container">
+        <button onclick="update('map')">Map</button>
+        <button onclick="update('statistics')">Statistics</button>
+        <button onclick="update('about')">About</button>
+      </div>
     </div>
 
     <div>
       <iframe id="map" src="map1.html" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0">
       </iframe>
-      <iframe id="statistics" src="neighborhood-bar-chart.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0">
+      <iframe id="statistics" src="neighborhood-bar-chart.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="5">
       </iframe>
       <iframe id="about">
       </iframe>
