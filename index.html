@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Seattle Crimes</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="//d3js.org/d3.v5.min.js"></script>
+
+    <style>
+      #map {
+        position: absolute;
+        height: 700px;
+        width: 100%;
+        overflow: scroll;
+        visibility: visible;
+      }
+
+      #statistics {
+        position: absolute;
+        visibility: hidden;
+        height: 400px;
+        width: 800px;
+        overflow: scroll;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="nav-bar">
+      <button onclick="update('map')">Map</button>
+      <button onclick="update('statistics')">Statistics</button>
+      <button onclick="update('about')">About</button>
+    </div>
+
+    <div>
+      <iframe id="map" src="map1.html" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0">
+      </iframe>
+      <iframe id="statistics" src="neighborhood-bar-chart.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0">
+      </iframe>
+      <iframe id="about">
+      </iframe>
+    </div>
+
+    <script>
+      function update(page){
+        if (page === 'map') {
+          document.getElementById('map').style.visibility = "visible";
+          document.getElementById('statistics').style.visibility = "hidden";
+          document.getElementById('about').style.visibility = "hidden";
+        } else if (page === 'statistics') {
+          document.getElementById('map').style.visibility = "hidden";
+          document.getElementById('statistics').style.visibility = "visible";
+          document.getElementById('about').style.visibility = "hidden";
+        } else {
+          document.getElementById('map').style.visibility = "hidden";
+          document.getElementById('statistics').style.visibility = "hidden";
+          document.getElementById('about').style.visibility = "visible";
+        }
+      }
+    </script>
+  </body>
+</html>
