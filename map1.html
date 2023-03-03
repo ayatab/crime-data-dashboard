@@ -28,10 +28,6 @@
             color: black
         }
 
-        h1 {
-            margin-top: 0;
-        }
-
         #title {
             position: absolute;
             top: 0;
@@ -43,26 +39,6 @@
             color: white;
 
         }
-
-        /* #subtitle {
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin-top: 70px;
-            margin-left: -5px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 10pt;
-            color: white;
-            white-space: pre-wrap;
-        } */
-
-        /* .legend-key {
-            display: inline-block;
-            border-radius: 20%;
-            width: 10px;
-            height: 10px;
-            margin-right: 5px;
-        } */
 
         body {
             margin: 0;
@@ -92,30 +68,22 @@
 
         }
 
-        .session {
-            margin-bottom: 20px;
-        }
-
-        .row {
-            height: 12px;
-            width: 100%;
-        }
-
-        .colors {
-            background: linear-gradient(to right,
-                    #2dc4b2,
-                    #3bb3c3,
-                    #669ec4,
-                    #8b88b6,
-                    #a2719b,
-                    #aa5e79);
-            margin-bottom: 5px;
-        }
-
         .label {
             width: 15%;
             display: inline-block;
             text-align: center;
+        }
+
+        .filter-group {
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+            border-radius: 3px;
+            width: 120px;
+            color: #fff;
         }
     </style>
 </head>
@@ -125,23 +93,16 @@
     <div id="map"></div>
     <div id="legend"></div>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Seattle Crimes</a>
     </nav>
-    <div id="title" class="my-7">
+    <!-- <div id="title" class="my-7">
         Crimes in Seattle from 2018-2022
-    </div>
-    <div class='session' class="my-5">
+    </div> -->
+    <div class="mx-3">
         <h2>Day of the week</h2>
         <div id="console">
-            <h1>Crimes by Year</h1>
-            <p>
-                <strong>Data:</strong>
-                <a href="https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5">Seattle Crimes
-                    Since 2008, filtered for 2018-2022</a>
-                collected by SPD in Seattle, 2008-Live
-            </p>
-            <div class=''>
-                <h3>Filter by year:</h3>
+            <div>
+                <h5>Filter by year:</h5>
                 <div class='' id='filters'>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="toggle" id="all" value="all"
@@ -185,28 +146,91 @@
                             2022
                         </label>
                     </div>
-                    <!-- <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-                    <label for='all'>All</label>
-                    <input id='2018' type='radio' name='toggle' value='2018'>
-                    <label for='2018'>2018</label>
-                    <input id='2019' type='radio' name='toggle' value='2019'>
-                    <label for='2019'>2019</label>
-                    <input id='2020' type='radio' name='toggle' value='2020'>
-                    <label for='2020'>2020</label>
-                    <input id='2021' type='radio' name='toggle' value='2021'>
-                    <label for='2021'>2021</label>
-                    <input id='2022' type='radio' name='toggle' value='2022'>
-                    <label for='2022'>2022</label> -->
+                </div>
+
+                <h5>Filter by crime:</h5>
+                <div class='' id='crimetype'>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="all" value="all"
+                            checked="checked">
+                        <label class="form-check-label" for="all">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="assault" value="assault"
+                            checked="checked">
+                        <label class="form-check-label" for="assault">
+                            Assault Offenses
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="burglar" value="burglar"
+                            checked="checked">
+                        <label class="form-check-label" for="burglar">
+                            Burglary or Breaking In
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="drugs" value="drugs"
+                            checked="checked">
+                        <label class="form-check-label" for="drugs">
+                            Drugs and Narcotic Offenses
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="dui" value="dui"
+                            checked="checked">
+                        <label class="form-check-label" for="dui">
+                            Driving Under the Influence
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="fraud" value="fraud"
+                            checked="checked">
+                        <label class="form-check-label" for="fraud">
+                            Fraud Offenses
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="mvt" value="mvt"
+                            checked="checked">
+                        <label class="form-check-label" for="mvt">
+                            Motor Vehicle Theft
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="property" value="property"
+                            checked="checked">
+                        <label class="form-check-label" for="property">
+                            Tresspass of Property
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="robbery" value="robbery"
+                            checked="checked">
+                        <label class="form-check-label" for="robbery">
+                            Robbery
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="toggle" id="theft" value="theft"
+                            checked="checked">
+                        <label class="form-check-label" for="theft">
+                            Theft
+                        </label>
+                    </div>
                 </div>
             </div>
+            <p>
+                <strong>Data:</strong>
+                <a href="https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5">Seattle Crimes
+                    Since 2008, filtered for 2018-2022</a>
+                collected by SPD in Seattle, 2008-Live
+            </p>
         </div>
+
     </div>
-    <!-- <div id="subtitle">
-        This map shows the rates of COVID cases in the US, meaning cases per 1000 residents in each state. The data that is
-        visualized in this map is derived from three sources: one being the New York Times for the COVID case/death data,
-        the second being population data for calculating case rates from the 2018 ACS 5 year estimates data, and the third
-        being the US county boundary shapefile that was taken from the US Census Bureau. 
-    </div> -->
     <script>
         mapboxgl.accessToken =
             'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
@@ -216,80 +240,65 @@
             zoom: 12, // starting zoom
             center: [-122.3259435, 47.6002614] // starting center
         });
-        // const grades = [4, 5, 6],
-        //     colors = ['rgb(208,209,230)', 'rgb(103,169,207)', 'rgb(1,108,89)'],
-        //     radii = [5, 15, 20];
-        //load data to the map as new layers.
-        //map.on('load', function loadingData() {
+
+
         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
             // when loading a geojson, there are two steps
             // add a source of the data and then add the layer out of the source
-            // map.addSource('crimes_data', {
 
-            // });
             let filterYear = ['!=', ['string', ['get', 'Report Number']], 'placeholder'];
+            let filterCrime = ['!=', ['string', ['get', 'Offense Parent Group']], 'placeholder'];
+
+
+            imageArray = ['imgs/theft.png', 'imgs/destruction.png', 'imgs/assault.png', 'imgs/burglar.png', 'imgs/dui.png', 'imgs/drugs.png', 'imgs/fraud.png', 'imgs/mvt.png', 'imgs/robbery.png', 'imgs/property.png', 'imgs/police.png']
+            idArray = []
+
+            for (imageItem of imageArray) {
+                const imageName = imageItem.substring(imageItem.indexOf('/') + 1, imageItem.indexOf('.'));
+
+                map.loadImage(imageItem, (error, image) => {
+                    if (error) throw error;
+                    map.addImage(imageName, image);
+                });
+            }
 
             map.addLayer({
                 'id': 'crimes',
-                'type': 'circle',
+                'type': 'symbol',
                 'source': {
                     type: 'geojson',
                     data: 'assets/crime_data.geojson'
                 },
-                'paint': {
-                    // 'circle-color': '#FFFFFF',
-                    'circle-color': [
+                'layout': {
+                    'icon-image': [
                         'match',
                         ['get', 'Offense Parent Group'],
-                        'LARCENY-THEFT',
-                        '#fbb03b',
-                        'DRUG/NARCOTIC OFFENSES',
-                        '#223b53',
-                        'DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY',
-                        '#e55e5e',
-                        'ROBBERY',
-                        '#3bb2d0',
-            /* other */ '#ccc'
+                        ['LARCENY-THEFT'],
+                        'theft',
+                        ['ASSAULT OFFENSES'],
+                        'assault',
+                        ['BURGLARY/BREAKING&ENTERING'],
+                        'burglar',
+                        ['DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY'],
+                        'destruction',
+                        ['DRIVING UNDER THE INFLUENCE'],
+                        'dui',
+                        ['DRUG/NARCOTIC OFFENSES'],
+                        'drugs',
+                        ['FRAUD OFFENSES'],
+                        'fraud',
+                        ['MOTOR VEHICLE THEFT'],
+                        'mvt',
+                        ['ROBBERY'],
+                        'robbery',
+                        ['TRESPASS OF REAL PROPERTY'],
+                        'property',
+                        'police'
                     ],
-                    'circle-radius': 2.5
-
-                },
-                'filter': ['all', filterYear]
+                    "icon-allow-overlap": true,
+                    'icon-size': .5
+                }
             });
-
-
-            // map.addLayer({
-            //     'id': 'crimes',
-            //     'type': 'symbol',
-            //     'source': {
-            //         type: 'geojson',
-            //         data: 'assets/crime_data.geojson'
-            //     },
-            //     'layout': {
-            //         'icon-image': [
-            //             'match',
-            //             ['get', 'Offense Parent Group'],
-            //             'LARCENY-THEFT',
-            //             '#fbb03b',
-            //             'Black',
-            //             '#223b53',
-            //             'Hispanic',
-            //             '#e55e5e',
-            //             'Asian',
-            //             '#3bb2d0',
-            // /* other */ '#ccc'
-            //         ]
-            //         ,
-            //         // get the title name from the source's "title" property
-            //         'text-field': ['get', 'title'],
-            //         'text-font': [
-            //             'Open Sans Semibold',
-            //             'Arial Unicode MS Bold'
-            //         ],
-            //         'text-offset': [0, 1.25],
-            //         'text-anchor': 'top'
-            //     }
-            // });
 
             var nav = new mapboxgl.NavigationControl();
             map.addControl(nav, 'bottom-right');
@@ -316,13 +325,44 @@
                 map.setFilter('crimes', ['all', filterYear]);
             });
 
+            document.getElementById('crimetype').addEventListener('change', (event) => {
+                const type = event.target.value;
+                // update the map filter
+                if (type === 'all') {
+                    filterCrime = ['!=', ['string', ['get', 'Offense Parent Group']], 'placeholder'];
+                } else if (type === 'assault') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['ASSAULT OFFENSES'], true, false];
+                } else if (type === 'burglar') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['BURGLARY/BREAKING&ENTERING'], true, false];
+                } else if (type === 'destruction') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY'], true, false];
+                } else if (type === 'drugs') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['DRUG/NARCOTIC OFFENSES'], true, false];
+                } else if (type === 'dui') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['DRIVING UNDER THE INFLUENCE'], true, false];
+                } else if (type === 'fraud') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['FRAUD OFFENSES'], true, false];
+                } else if (type === 'mvt') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['MOTOR VEHICLE THEFT'], true, false];
+                } else if (type === 'property') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['TRESPASS OF REAL PROPERTY'], true, false];
+                } else if (type === 'robbery') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['ROBBERY'], true, false];
+                } else if (type === 'theft') {
+                    filterCrime = ['match', ['get', 'Offense Parent Group'], ['LARCENY-THEFT'], true, false];
+                } else {
+                    console.log('error');
+                }
+                map.setFilter('crimes', ['all', filterCrime]);
+            });
+
         });
 
         // click on tree to view magnitude in a popup
         map.on('click', 'crimes', (event) => {
             new mapboxgl.Popup()
-                .setLngLat(event.features[0].geometry.coordinates[0][0])
-                .setHTML(`<strong>COVID rate: </strong> ${event.features[0].properties['Offense']} cases per 1000 residents`)
+                .setLngLat(event.features[0].geometry.coordinates)
+                .setHTML(`<strong>Crime: </strong> ${event.features[0].properties['Offense']}`)
                 .addTo(map);
         });
 
