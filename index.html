@@ -40,10 +40,20 @@
       }
 
       #tree-map {
-        height: 500px;
+        height: 600px;
         width: 700px;
         overflow: scroll;
         margin-top: 10px;
+        margin-right: 20px;
+      }
+
+      #pie-chart {
+        height: 600px;
+        width: 500px;
+        overflow: scroll;
+        margin-top: 10px;
+        display:inline-block;
+        margin-left: 20px;
       }
 
       #about {
@@ -67,13 +77,6 @@
     </style>
   </head>
   <body>
-    <!-- <div id="nav-bar">
-      <div id="container">
-        <button onclick="update('map')">Map</button>
-        <button onclick="update('statistics')">Statistics</button>
-        <button onclick="update('about')">About</button>
-      </div>
-    </div> -->
     <nav class="navbar navbar-light bg-light" >
       <a class="navbar-brand" href="#">Seattle Crime Dashboard</a>
       <div id="container">
@@ -90,6 +93,8 @@
         <iframe id="bar-chart" src="neighborhood-bar-chart.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="5">
         </iframe>
         <iframe id="tree-map" src="viz.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="5">
+        </iframe>
+        <iframe id="pie-chart" src="crime-pie-chart.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="5">
         </iframe>
       </div>
       <iframe id="about" src="about.html" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="5">
