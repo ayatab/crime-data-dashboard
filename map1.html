@@ -262,14 +262,71 @@
                 });
             }
 
+            map.addSource('crimes', {
+                type: 'geojson',
+                data: ' assets/crime_data.geojson',
+                cluster: true, // enable clustering
+                clusterMaxZoom: 12, // Max zoom to cluster points on
+                clusterRadius: 50,
+            })
+
             map.addLayer({
-                'id': 'crimes',
-                'type': 'symbol',
-                'source': {
-                    type: 'geojson',
-                    data: 'assets/crime_data.geojson'
-                },
-                'layout': {
+                id: 'clusters',
+                type: 'circle',
+                source: 'crimes',
+                filter: ['has', 'point_count'],
+                paint: {
+                    // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+                    // with three steps to implement three types of circles:
+                    //   * Blue, 20px circles when point count is less than 100
+                    //   * Yellow, 30px circles when point count is between 100 and 750
+                    //   * Pink, 40px circles when point count is greater than or equal to 750
+                    'circle-color': [
+                        'step',
+                        ['get', 'point_count'],
+                        '#fff600',
+                        50,
+                        '#ffc302',
+                        100,
+                        '#ff8f00',
+                        750,
+                        '#ff5b00',
+                        3000,
+                        '#ff0505'
+                    ],
+                    'circle-radius': [
+                        'step',
+                        ['get', 'point_count'],
+                        10,
+                        50,
+                        20,
+                        100,
+                        30,
+                        750,
+                        40,
+                        3000,
+                        50,
+                    ]
+                }
+            });
+
+            map.addLayer({
+                id: 'cluster-count',
+                type: 'symbol',
+                source: 'crimes',
+                filter: ['has', 'point_count'],
+                layout: {
+                    'text-field': ['get', 'point_count_abbreviated'],
+                    'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                    'text-size': 12
+                }
+            });
+
+            map.addLayer({
+                id: 'crimes',
+                type: 'symbol',
+                source: 'crimes',
+                layout: {
                     'icon-image': [
                         'match',
                         ['get', 'Offense Parent Group'],
@@ -297,8 +354,10 @@
                     ],
                     "icon-allow-overlap": true,
                     'icon-size': .5
-                }
+                },
+                minzoom: 13
             });
+
 
             var nav = new mapboxgl.NavigationControl();
             map.addControl(nav, 'bottom-right');
