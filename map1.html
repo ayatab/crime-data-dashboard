@@ -246,8 +246,7 @@
             // when loading a geojson, there are two steps
             // add a source of the data and then add the layer out of the source
 
-            let filterYear = ['!=', ['string', ['get', 'Report Number']], 'placeholder'];
-            let filterCrime = ['!=', ['string', ['get', 'Offense Parent Group']], 'placeholder'];
+            
 
 
             imageArray = ['imgs/theft.png', 'imgs/destruction.png', 'imgs/assault.png', 'imgs/burglar.png', 'imgs/dui.png', 'imgs/drugs.png', 'imgs/fraud.png', 'imgs/mvt.png', 'imgs/robbery.png', 'imgs/property.png', 'imgs/police.png']
@@ -361,6 +360,9 @@
 
             var nav = new mapboxgl.NavigationControl();
             map.addControl(nav, 'bottom-right');
+
+            let filterYear = ['!=', ['string', ['get', 'Report Number']], 'placeholder'];
+            let filterCrime = ['!=', ['string', ['get', 'Offense Parent Group']], 'placeholder'];
 
 
             document.getElementById('filters').addEventListener('change', (event) => {
