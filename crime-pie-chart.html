@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Distribution of Crimes Types</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="//d3js.org/d3.v5.min.js"></script>
+
+    <style>
+      #title {
+        font-size: 16px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      #pie-chart {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p id="title">Breakdown of Crime Types</p>
+    <select id="dropdown" onchange="reload()">
+      <option>Select Type of Crime</option>
+    </select>
+    <p>*if only one color is shown, there is no further breakdown for that type of crime</p>
+    <div id="pie-chart"></div>
+
+    <script>
+
+      var data = d3.csv('assets/crime_data.csv')
+          .then(makeDrowpdown);
+
+      function makeDrowpdown(data) {
+        const crimes = [];
+          data.forEach(element => {
+            var type = element['Offense Parent Group'];
+            if (crimes.includes(type)) {
+              return;
+            }
+            crimes.push(type);
+            return crimes;
+          }, []);
+
+        select = document.getElementById('dropdown');
+        crimes.forEach(element => {
+          var el = document.createElement('option');
+          el.textContent = element;
+          el.value = element;
+          select.appendChild(el);
+        })
+      }
+
+      function reload() {
+        var data = d3.csv('assets/crime_data.csv')
+          .then(makeChart);
+      }
+
+      function makeChart(data) {
+        d3.selectAll("#pie-chart > *").remove()
+        var selected = document.getElementById('dropdown').value;
+
+        selectedData = [];
+        let count = 0;
+        data.forEach(element => {
+          if (element["Offense Parent Group"] === selected) {
+            ++count;
+            const found = selectedData.find(e => e.offense === element["Offense"]);
+            if (found) ++found.value;
+            else selectedData.push({
+              offense: element["Offense"],
+              value: 1
+            })
+          }
+          return selectedData;
+        }, []);
+
+        // set the dimensions and margins of the graph
+        var width = 450
+            height = 450
+            margin = 40
+
+        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+        var radius = Math.min(width, height) / 2 - margin
+
+        // append the svg object to the div called 'pie-chart'
+        var svg = d3.select("#pie-chart")
+          .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+          .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        // set the color scale
+        var color = d3.scaleOrdinal()
+          .domain(selectedData)
+          .range(["#ff6961", "#ffb480", "#f8f38d", "#42d6a4", "#08cad1", "#59adf6", "#9d94ff", "#c780e8"])
+
+        // Compute the position of each group on the pie:
+        var pie = d3.pie()
+          .value(function(d) {return d.value.value; })
+        var data_ready = pie(d3.entries(selectedData))
+
+        // create a tooltip
+        var Tooltip = d3.select("#pie-chart")
+          .append("div")
+          .style("opacity", 0)
+          .attr("class", "tooltip")
+          .style("background-color", "white")
+          .style("border", "solid")
+          .style("border-width", "2px")
+          .style("border-radius", "5px")
+          .style("padding", "5px")
+          .style("position", "absolute")
+
+        // Three function that change the tooltip when user hover / move / leave a cell
+        var mouseover = function(d) {
+          Tooltip
+            .style("opacity", 1)
+          d3.select(this)
+            .style("stroke", "black")
+            .style("opacity", 1)
+        }
+
+        let target = document.getElementById("pie-chart");
+        let centerX = target.offsetLeft + target.offsetWidth / 2;
+        let centerY = target.offsetTop + target.offsetHeight / 2;
+
+        var mousemove = function(d) {
+          Tooltip
+            .html(d.data.value.offense + ": " + Math.round(d.data.value.value / count * 100) + "%")
+            .style("left", centerX + (d3.mouse(this)[0]) + 10 + "px")
+            .style("top", centerY + (d3.mouse(this)[1]) + 10 + "px")
+        }
+        var mouseleave = function(d) {
+          Tooltip
+            .style("opacity", 0)
+          d3.select(this)
+            .style("stroke", "none")
+        }
+
+        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+        svg
+          .selectAll('slices')
+          .data(data_ready)
+          .enter()
+          .append('path')
+          .attr('d', d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius)
+          )
+          .attr('fill', function(d){ return(color(d.data.key)) })
+          .on("mouseover", mouseover)
+          .on("mousemove", mousemove)
+          .on("mouseleave", mouseleave)
+      }
+    </script>
+  </body>
+</html>
