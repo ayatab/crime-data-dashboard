@@ -259,26 +259,26 @@
                 clusterMaxZoom: 12,
             })
 
-            map.addSource('crime_2018', {
+            map.addSource('2018', {
                 type: 'geojson',
                 data: 'assets/crime_data_2018.geojson',
             })
 
-            map.addSource('crime_2019', {
+            map.addSource('2019', {
                 type: 'geojson',
                 data: 'assets/crime_data_2019.geojson',
             })
 
-            map.addSource('crime_2020', {
+            map.addSource('2020', {
                 type: 'geojson',
                 data: 'assets/crime_data_2020.geojson',
             })
 
-            map.addSource('crime_2021', {
+            map.addSource('2021', {
                 type: 'geojson',
                 data: 'assets/crime_data_2021.geojson',
             })
-            map.addSource('crime_2022', {
+            map.addSource('2022', {
                 type: 'geojson',
                 data: 'assets/crime_data_2022.geojson',
             })
@@ -286,13 +286,13 @@
 
             map.on('idle', () => {
                 // If these two layers were not added to the map, abort
-                if (!map.getLayer('crimes') || !map.getLayer('crime_2018') || !map.getLayer('crime_2019')
-                    || !map.getLayer('crime_2020') || !map.getLayer('crime_2021') || !map.getLayer('crime_2022')) {
+                if (!map.getLayer('crimes') || !map.getLayer('2018') || !map.getLayer('2019')
+                    || !map.getLayer('2020') || !map.getLayer('2021') || !map.getLayer('2022')) {
                     return;
                 }
 
                 // Enumerate ids of the layers.
-                const toggleableLayerIds = ['crimes', 'crime_2018', 'crime_2019', 'crime_2020', 'crime_2021', 'crime_2022'];
+                const toggleableLayerIds = ['crimes', '2018', '2019', '2020', '2021', '2022'];
 
                 // Set up the corresponding toggle button for each layer.
                 for (const id of toggleableLayerIds) {
@@ -429,9 +429,9 @@
             });
 
             map.addLayer({
-                'id': 'crime_2018',
+                'id': '2018',
                 'type': 'symbol',
-                'source': 'crime_2018',
+                'source': '2018',
                 'layout': {
                 // Make the layer visible by default.
                     'visibility': 'visible',
@@ -467,9 +467,9 @@
             });
 
             map.addLayer({
-                'id': 'crime_2019',
+                'id': '2019',
                 'type': 'symbol',
-                'source': 'crime_2019',
+                'source': '2019',
                 'layout': {
                 // Make the layer visible by default.
                     'visibility': 'visible',
@@ -505,9 +505,9 @@
             });
 
             map.addLayer({
-                'id': 'crime_2020',
+                'id': '2020',
                 'type': 'symbol',
-                'source': 'crime_2020',
+                'source': '2020',
                 'layout': {
                 // Make the layer visible by default.
                 'visibility': 'visible',
@@ -543,9 +543,9 @@
             });
 
             map.addLayer({
-                'id': 'crime_2021',
+                'id': '2021',
                 'type': 'symbol',
-                'source': 'crime_2021',
+                'source': '2021',
                 'layout': {
                     'visibility': 'visible',
                     'icon-image': [
@@ -580,9 +580,9 @@
             });
 
             map.addLayer({
-                'id': 'crime_2022',
+                'id': '2022',
                 'type': 'symbol',
-                'source': 'crime_2022',
+                'source': '2022',
                 'layout': {
                     'visibility': 'visible',
                     'icon-image': [
@@ -652,11 +652,11 @@
                     console.log('error');
                 }
                 map.setFilter('crimes', ['all', filterCrime]);
-                map.setFilter('crime_2018', ['all', filterCrime]);
-                map.setFilter('crime_2019', ['all', filterCrime]);
-                map.setFilter('crime_2020', ['all', filterCrime]);
-                map.setFilter('crime_2021', ['all', filterCrime]);
-                map.setFilter('crime_2022', ['all', filterCrime]);
+                map.setFilter('2018', ['all', filterCrime]);
+                map.setFilter('2019', ['all', filterCrime]);
+                map.setFilter('2020', ['all', filterCrime]);
+                map.setFilter('2021', ['all', filterCrime]);
+                map.setFilter('2022', ['all', filterCrime]);
             });
 
         });
