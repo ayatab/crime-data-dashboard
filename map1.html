@@ -46,13 +46,6 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        /* #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-        } */
-
         a {
             text-decoration: none;
             color: #2dc4b2;
@@ -85,7 +78,50 @@
             width: 120px;
             color: #fff;
         }
+
+        #menu {
+            background: #fff;
+            position: absolute;
+            z-index: 1;
+            top: 10px;
+            right: 10px;
+            border-radius: 3px;
+            width: 120px;
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #menu a {
+            font-size: 13px;
+            color: #404040;
+            display: block;
+            margin: 0;
+            padding: 0;
+            padding: 10px;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        #menu a:last-child {
+            border: none;
+        }
+
+        #menu a:hover {
+            background-color: #f8f8f8;
+            color: #404040;
+        }
+
+        #menu a.active {
+            background-color: #3887be;
+            color: #ffffff;
+        }
+
+        #menu a.active:hover {
+            background: #3074a4;
+        }
     </style>
+    <nav id="menu"></nav>
 </head>
 
 <body>
@@ -101,53 +137,6 @@
     <div class="mx-3">
         <h2>Day of the week</h2>
         <div id="console">
-            <div>
-                <h5>Filter by year:</h5>
-                <div class='' id='filters'>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="all" value="all"
-                            checked="checked">
-                        <label class="form-check-label" for="all">
-                            All
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="2018" value="2018"
-                            checked="checked">
-                        <label class="form-check-label" for="2018">
-                            2018
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="2019" value="2019"
-                            checked="checked">
-                        <label class="form-check-label" for="2019">
-                            2019
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="2020" value="2020"
-                            checked="checked">
-                        <label class="form-check-label" for="2020">
-                            2020
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="2021" value="2021"
-                            checked="checked">
-                        <label class="form-check-label" for="2021">
-                            2021
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="2021" value="2022"
-                            checked="checked">
-                        <label class="form-check-label" for="2022">
-                            2022
-                        </label>
-                    </div>
-                </div>
-
                 <h5>Filter by crime:</h5>
                 <div class='' id='crimetype'>
                     <div class="form-check">
@@ -158,69 +147,59 @@
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="assault" value="assault"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="assault" value="assault">
                         <label class="form-check-label" for="assault">
                             Assault Offenses
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="burglar" value="burglar"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="burglar" value="burglar">
                         <label class="form-check-label" for="burglar">
                             Burglary or Breaking In
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="drugs" value="drugs"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="drugs" value="drugs">
                         <label class="form-check-label" for="drugs">
                             Drugs and Narcotic Offenses
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="dui" value="dui"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="dui" value="dui">
                         <label class="form-check-label" for="dui">
                             Driving Under the Influence
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="fraud" value="fraud"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="fraud" value="fraud">
                         <label class="form-check-label" for="fraud">
                             Fraud Offenses
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="mvt" value="mvt"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="mvt" value="mvt">
                         <label class="form-check-label" for="mvt">
                             Motor Vehicle Theft
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="property" value="property"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="property" value="property">
                         <label class="form-check-label" for="property">
                             Tresspass of Property
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="robbery" value="robbery"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="robbery" value="robbery">
                         <label class="form-check-label" for="robbery">
                             Robbery
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="toggle" id="theft" value="theft"
-                            checked="checked">
+                        <input class="form-check-input" type="radio" name="toggle" id="theft" value="theft">
                         <label class="form-check-label" for="theft">
                             Theft
                         </label>
                     </div>
-                </div>
             </div>
             <p>
                 <strong>Data:</strong>
@@ -246,7 +225,7 @@
             // when loading a geojson, there are two steps
             // add a source of the data and then add the layer out of the source
 
-            
+
 
 
             imageArray = ['imgs/theft.png', 'imgs/destruction.png', 'imgs/assault.png', 'imgs/burglar.png', 'imgs/dui.png', 'imgs/drugs.png', 'imgs/fraud.png', 'imgs/mvt.png', 'imgs/robbery.png', 'imgs/property.png', 'imgs/police.png']
@@ -264,11 +243,90 @@
             map.addSource('crimes', {
                 type: 'geojson',
                 data: ' assets/crime_data.geojson',
-                cluster: true, // enable clustering
-                clusterMaxZoom: 12, // Max zoom to cluster points on
-                clusterRadius: 50,
+                cluster: true,
+                clusterMaxZoom: 12,
             })
 
+            map.addSource('crime_2018', {
+                type: 'geojson',
+                data: 'assets/crime_data_2018.geojson',
+            })
+
+            map.addSource('crime_2019', {
+                type: 'geojson',
+                data: 'assets/crime_data_2019.geojson',
+            })
+
+            map.addSource('crime_2020', {
+                type: 'geojson',
+                data: 'assets/crime_data_2020.geojson',
+            })
+
+            map.addSource('crime_2021', {
+                type: 'geojson',
+                data: 'assets/crime_data_2021.geojson',
+            })
+            map.addSource('crime_2022', {
+                type: 'geojson',
+                data: 'assets/crime_data_2022.geojson',
+            })
+
+
+            map.on('idle', () => {
+                // If these two layers were not added to the map, abort
+                if (!map.getLayer('crimes') || !map.getLayer('crime_2018') || !map.getLayer('crime_2019')
+                    || !map.getLayer('crime_2020') || !map.getLayer('crime_2021') || !map.getLayer('crime_2022')) {
+                    return;
+                }
+
+                // Enumerate ids of the layers.
+                const toggleableLayerIds = ['crimes', 'crime_2018', 'crime_2019', 'crime_2020', 'crime_2021', 'crime_2022'];
+
+                // Set up the corresponding toggle button for each layer.
+                for (const id of toggleableLayerIds) {
+                // Skip layers that already have a button set up.
+                    if (document.getElementById(id)) {
+                        continue;
+                }
+
+                    // Create a link.
+                    const link = document.createElement('a');
+                    link.id = id;
+                    link.href = '#';
+                    link.textContent = id;
+                    link.className = 'active';
+
+                    // Show or hide layer when the toggle is clicked.
+                    link.onclick = function (e) {
+                    const clickedLayer = this.textContent;
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const visibility = map.getLayoutProperty(
+                        clickedLayer,
+                        'visibility'
+                    );
+
+                // Toggle layer visibility by changing the layout object's visibility property.
+                if (visibility === 'visible') {
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                    this.className = '';
+                    } else {
+                        this.className = 'active';
+                        map.setLayoutProperty(
+                        clickedLayer,
+                        'visibility',
+                        'visible'
+                        );
+                    }
+                };
+
+                const layers = document.getElementById('menu');
+                layers.appendChild(link);
+                }
+            });
+
+                minzoom: 13
             map.addLayer({
                 id: 'clusters',
                 type: 'circle',
@@ -306,7 +364,7 @@
                         3000,
                         50,
                     ]
-                }
+                },
             });
 
             map.addLayer({
@@ -318,14 +376,203 @@
                     'text-field': ['get', 'point_count_abbreviated'],
                     'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
                     'text-size': 12
-                }
+                },
             });
 
             map.addLayer({
-                id: 'crimes',
-                type: 'symbol',
-                source: 'crimes',
-                layout: {
+                'id': 'crimes',
+                'type': 'symbol',
+                'source': 'crimes',
+                'layout': {
+                    'visibility': 'visible',
+                    'icon-image': [
+                        'match',
+                        ['get', 'Offense Parent Group'],
+                        ['LARCENY-THEFT'],
+                        'theft',
+                        ['ASSAULT OFFENSES'],
+                        'assault',
+                        ['BURGLARY/BREAKING&ENTERING'],
+                        'burglar',
+                        ['DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY'],
+                        'destruction',
+                        ['DRIVING UNDER THE INFLUENCE'],
+                        'dui',
+                        ['DRUG/NARCOTIC OFFENSES'],
+                        'drugs',
+                        ['FRAUD OFFENSES'],
+                        'fraud',
+                        ['MOTOR VEHICLE THEFT'],
+                        'mvt',
+                        ['ROBBERY'],
+                        'robbery',
+                        ['TRESPASS OF REAL PROPERTY'],
+                        'property',
+                        'police'
+                    ],
+                    "icon-allow-overlap": true,
+                    'icon-size': .5
+                },
+                minzoom: 13
+            });
+
+            map.addLayer({
+                'id': 'crime_2018',
+                'type': 'symbol',
+                'source': 'crime_2018',
+                'layout': {
+                // Make the layer visible by default.
+                    'visibility': 'visible',
+                    'icon-image': [
+                            'match',
+                            ['get', 'Offense Parent Group'],
+                            ['LARCENY-THEFT'],
+                            'theft',
+                            ['ASSAULT OFFENSES'],
+                            'assault',
+                            ['BURGLARY/BREAKING&ENTERING'],
+                            'burglar',
+                            ['DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY'],
+                            'destruction',
+                            ['DRIVING UNDER THE INFLUENCE'],
+                            'dui',
+                            ['DRUG/NARCOTIC OFFENSES'],
+                            'drugs',
+                            ['FRAUD OFFENSES'],
+                            'fraud',
+                            ['MOTOR VEHICLE THEFT'],
+                            'mvt',
+                            ['ROBBERY'],
+                            'robbery',
+                            ['TRESPASS OF REAL PROPERTY'],
+                            'property',
+                            'police'
+                        ],
+                        "icon-allow-overlap": true,
+                        "icon-size": .5
+                },
+                minzoom: 13
+            });
+
+            map.addLayer({
+                'id': 'crime_2019',
+                'type': 'symbol',
+                'source': 'crime_2019',
+                'layout': {
+                // Make the layer visible by default.
+                    'visibility': 'visible',
+                    'icon-image': [
+                            'match',
+                            ['get', 'Offense Parent Group'],
+                            ['LARCENY-THEFT'],
+                            'theft',
+                            ['ASSAULT OFFENSES'],
+                            'assault',
+                            ['BURGLARY/BREAKING&ENTERING'],
+                            'burglar',
+                            ['DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY'],
+                            'destruction',
+                            ['DRIVING UNDER THE INFLUENCE'],
+                            'dui',
+                            ['DRUG/NARCOTIC OFFENSES'],
+                            'drugs',
+                            ['FRAUD OFFENSES'],
+                            'fraud',
+                            ['MOTOR VEHICLE THEFT'],
+                            'mvt',
+                            ['ROBBERY'],
+                            'robbery',
+                            ['TRESPASS OF REAL PROPERTY'],
+                            'property',
+                            'police'
+                        ],
+                        "icon-allow-overlap": true,
+                        "icon-size": .5
+                },
+                minzoom: 13
+            });
+
+            map.addLayer({
+                'id': 'crime_2020',
+                'type': 'symbol',
+                'source': 'crime_2020',
+                'layout': {
+                // Make the layer visible by default.
+                'visibility': 'visible',
+                'icon-image': [
+                        'match',
+                        ['get', 'Offense Parent Group'],
+                        ['LARCENY-THEFT'],
+                        'theft',
+                        ['ASSAULT OFFENSES'],
+                        'assault',
+                        ['BURGLARY/BREAKING&ENTERING'],
+                        'burglar',
+                        ['DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY'],
+                        'destruction',
+                        ['DRIVING UNDER THE INFLUENCE'],
+                        'dui',
+                        ['DRUG/NARCOTIC OFFENSES'],
+                        'drugs',
+                        ['FRAUD OFFENSES'],
+                        'fraud',
+                        ['MOTOR VEHICLE THEFT'],
+                        'mvt',
+                        ['ROBBERY'],
+                        'robbery',
+                        ['TRESPASS OF REAL PROPERTY'],
+                        'property',
+                        'police'
+                    ],
+                    "icon-allow-overlap": true,
+                    "icon-size": .5
+                },
+                minzoom: 13
+            });
+
+            map.addLayer({
+                'id': 'crime_2021',
+                'type': 'symbol',
+                'source': 'crime_2021',
+                'layout': {
+                    'visibility': 'visible',
+                    'icon-image': [
+                        'match',
+                        ['get', 'Offense Parent Group'],
+                        ['LARCENY-THEFT'],
+                        'theft',
+                        ['ASSAULT OFFENSES'],
+                        'assault',
+                        ['BURGLARY/BREAKING&ENTERING'],
+                        'burglar',
+                        ['DESTRUCTION/DAMAGE/VANDALISM OF PROPERTY'],
+                        'destruction',
+                        ['DRIVING UNDER THE INFLUENCE'],
+                        'dui',
+                        ['DRUG/NARCOTIC OFFENSES'],
+                        'drugs',
+                        ['FRAUD OFFENSES'],
+                        'fraud',
+                        ['MOTOR VEHICLE THEFT'],
+                        'mvt',
+                        ['ROBBERY'],
+                        'robbery',
+                        ['TRESPASS OF REAL PROPERTY'],
+                        'property',
+                        'police'
+                    ],
+                    "icon-allow-overlap": true,
+                    'icon-size': .5
+                },
+                minzoom: 13
+            });
+
+            map.addLayer({
+                'id': 'crime_2022',
+                'type': 'symbol',
+                'source': 'crime_2022',
+                'layout': {
+                    'visibility': 'visible',
                     'icon-image': [
                         'match',
                         ['get', 'Offense Parent Group'],
@@ -364,28 +611,6 @@
             let filterYear = ['!=', ['string', ['get', 'Report Number']], 'placeholder'];
             let filterCrime = ['!=', ['string', ['get', 'Offense Parent Group']], 'placeholder'];
 
-
-            document.getElementById('filters').addEventListener('change', (event) => {
-                const year = event.target.value;
-                // update the map filter
-                if (year === 'all') {
-                    filterYear = ['!=', ['string', ['get', 'Report Number']], 'placeholder'];
-                } else if (year === '2018') {
-                    filterYear = ['match', ['get', 'Report Number'], ['2018'], true, false];
-                } else if (year === '2019') {
-                    filterYear = ['match', ['get', 'Report Number'], ['2019'], true, false];
-                } else if (year === '2020') {
-                    filterYear = ['match', ['get', 'Report Number'], ['2020'], true, false];
-                } else if (year === '2021') {
-                    filterYear = ['match', ['get', 'Report Number'], ['2021'], true, false];
-                } else if (year === '2022') {
-                    filterYear = ['match', ['get', 'Report Number'], ['2022'], true, false];
-                } else {
-                    console.log('error');
-                }
-                map.setFilter('crimes', ['all', filterYear]);
-            });
-
             document.getElementById('crimetype').addEventListener('change', (event) => {
                 const type = event.target.value;
                 // update the map filter
@@ -415,6 +640,11 @@
                     console.log('error');
                 }
                 map.setFilter('crimes', ['all', filterCrime]);
+                map.setFilter('crime_2018', ['all', filterCrime]);
+                map.setFilter('crime_2019', ['all', filterCrime]);
+                map.setFilter('crime_2020', ['all', filterCrime]);
+                map.setFilter('crime_2021', ['all', filterCrime]);
+                map.setFilter('crime_2022', ['all', filterCrime]);
             });
 
         });
